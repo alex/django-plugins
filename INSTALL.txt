@@ -1,0 +1,1 @@
+To install django-plugins simply place the included plugins directory on your python path.  You can also symlink it to your site packages directory.
