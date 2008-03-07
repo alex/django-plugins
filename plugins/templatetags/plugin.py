@@ -8,7 +8,7 @@ register = Library()
 Usage:
 {% apply_plugin some_obj %}
 or
-{% apply_plugin some_obj or new_obj %}
+{% apply_plugin some_obj as new_obj %}
 """
 
 class ApplyPluginNode(Node):
