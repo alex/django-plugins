@@ -1,3 +1,5 @@
+import copy
+
 from django import template
 
 from plugins.models import Plugin
@@ -20,14 +22,13 @@ class ApplyPluginNode(template.Node):
         self.obj = template.Variable(object_name)
     
     def render(self, context):
-        obj = self.obj.resolve(context)
+        obj = copy.copy(self.obj.resolve(context))
         plgs = Plugin.objects.filter(active=True, acts_on=obj.__class__.__name__)
         for plg in plgs:
             plg_cls = plg.get_class()
             inst = plg_cls(obj)
             obj = inst.execute()
-        if self.varname:
-            context[self.varname] = obj
+        context[self.varname] = obj
         return ''
         
 
