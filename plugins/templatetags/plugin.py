@@ -13,10 +13,14 @@ or
 
 class ApplyPluginNode(template.Node):
     def __init__(self, object_name, varname=None):
-        self.object_name, self.varname = object_name, varname
+        if varname:
+            self.varname = varname
+        else:
+            self.varname = object_name
+        self.obj = template.Variable(object_name)
     
     def render(self, context):
-        obj = context[self.object_name]
+        obj = self.obj.resolve(context)
         plgs = Plugin.objects.filter(active=True, acts_on=obj.__class__.__name__)
         for plg in plgs:
             plg_cls = plg.get_class()
@@ -24,8 +28,6 @@ class ApplyPluginNode(template.Node):
             obj = inst.execute()
         if self.varname:
             context[self.varname] = obj
-        else:
-            context[self.object_name] = obj
         return ''
         
 
