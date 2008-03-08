@@ -1,1 +1,3 @@
 To install django-plugins simply place the included plugins directory on your python path.  You can also symlink it to your site packages directory.
+
+Then add ``plugins`` to your ``INSTALLED_APPS`` in your settings.py file for the django project you wish to use django-plugins with, make sure you also have ``django.contrib.admin`` there if you wish to use the admin for managing your plugins.

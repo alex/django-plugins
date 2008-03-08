@@ -1,0 +1,13 @@
+=====
+Usage
+=====
+
+These are instructions on how to use django-plugins itself, for instructions on how to build a plugin see ``plugin_style.txt``.
+
+You can add, remove, activate, and deactivate plugins from within the django admin.
+
+When you wish to add a plugin simply go into the admin, click on Plugin, and then click on Add plugin.  Select the plugin file you wish to add, whether you would like it to be active immediattely upon being added, and then select save.
+
+To delete a plugin(permanately, as opposed to deactivateing it), simply go the plugins page, click the plugin you want to delete, and press delete.
+
+To change whether a plugin is active, go to that plugin's page and either check or uncheck active, and press save.
