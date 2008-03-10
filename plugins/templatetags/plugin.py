@@ -6,12 +6,6 @@ from plugins.models import Plugin
 
 register = template.Library()
 
-"""
-Usage:
-{% apply_plugin some_obj %}
-or
-{% apply_plugin some_obj as new_obj %}
-"""
 
 class ApplyPluginNode(template.Node):
     def __init__(self, object_name, varname=None):
@@ -33,6 +27,14 @@ class ApplyPluginNode(template.Node):
         
 
 def apply_plugin(parser, token):
+    """
+    Applies all the active plugins that act on the class of the given object to the given object,
+    
+    Usage::
+    
+        {% apply_plugin [Object] %}
+        {% apply_plugin [Object] as [varname] %}
+    """
     bits = token.contents.split()
     if len(bits) == 4:
         if bits[2] != 'as':
