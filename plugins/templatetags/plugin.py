@@ -28,7 +28,7 @@ class ApplyPluginNode(template.Node):
 
 def apply_plugin(parser, token):
     """
-    Applies all the active plugins that act on the class of the given object to the given object,
+    Applies all the active plugins that act on the class of the given object to the given object.
     
     Usage::
     
