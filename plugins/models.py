@@ -36,7 +36,7 @@ class Plugin(models.Model):
     
     def get_class(self):
         path, filename = os.path.split(self.get_plugin_file_filename())
-        filename = filename.rstrip('.py')
+        filename, ext = os.path.splitext(filename)
         fp, pathname, description = imp.find_module(filename, [path])
         module = imp.load_module(filename, fp, pathname, description)
         return module.plugin_class
