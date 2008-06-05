@@ -7,7 +7,7 @@ Django Plugins takes advantage of duck typing in order to be most efficient.  Th
 Here is an example plugin:
 
 ```
-class FooBar:
+class FooBar(object):
     def __init__(self, entry):
         self.entry = entry
     
