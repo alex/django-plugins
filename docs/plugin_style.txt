@@ -11,7 +11,7 @@ class FooBar(object):
     def __init__(self, entry):
         self.entry = entry
     
-    def execute(self):
+    def __call__(self):
         self.entry.text = self.entry.text.replace('foo', 'bar')
         return self.entry
     
@@ -23,6 +23,6 @@ class FooBar(object):
 plugin_class = FooBar
 ```
 
-The plugin has 3 parts.  First is the ``__init__`` method, this should take whatever parameters the plugin needs, typically the object to be acted on, in the example plugin it takes a single object named entry.  Second is the ``execute`` method, this should do whatever the plugin is supposed to do and returns the value, in the example the plugin takes the ``text`` attribute of the entry object and replaces all the instances of 'foo' in the text with 'bar', it then returns the entry object.  Finally, each plugin should have an inner Meta class, this  should define 3 variables, name, which is the name of the plugin, author, the name of the author, and acts_on, which should have the name of the class the plugin takes as a parameter(strictly speaking it can take any class, so long as it defines all of the attributes and methods that the plugin makes use of).
+The plugin has 3 parts.  First is the ``__init__`` method, this should take whatever parameters the plugin needs, typically the object to be acted on, in the example plugin it takes a single object named entry.  Second is the ``__call__`` method, which is a Python "magic method" that allows you to call an instance of the object, this should do whatever the plugin is supposed to do and returns the value, in the example the plugin takes the ``text`` attribute of the entry object and replaces all the instances of 'foo' in the text with 'bar', it then returns the entry object.  Finally, each plugin should have an inner Meta class, this  should define 3 variables, name, which is the name of the plugin, author, the name of the author, and acts_on, which should have the name of the class the plugin takes as a parameter(strictly speaking it can take any class, so long as it defines all of the attributes and methods that the plugin makes use of).
 
 The plugin file should have a global variable named ``plugin_class`` which contains the class of the plugin, in the example the plugin's class is named FooBar, and the plugin_class variable just contains the class(note, this is not an instance of the class, it is the class itself).
