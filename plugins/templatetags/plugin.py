@@ -21,7 +21,7 @@ class ApplyPluginNode(template.Node):
         for plg in plgs:
             plg_cls = plg.get_class()
             inst = plg_cls(obj)
-            obj = inst.execute()
+            obj = inst()
         context[self.varname] = obj
         return ''
         
